@@ -360,16 +360,18 @@ endif
 
 ifeq ($(CONFIG_PLATFORM_RADXA), y)
 ARCH := arm64
-KDIR  ?= /lib/modules/$(shell uname -r)/build
-PWD   ?= $(shell pwd)
+# KDIR ?= /lib/modules/$(shell uname -r)/build
+KDIR ?= /home/builder/projects/zero3w/yocto/build/tmp-glibc/work/cortexa-oe-linux/xeal-aic8800/1.0/git
+PWD  ?= $(shell pwd)
 KVER ?= $(shell uname -r)
-CROSS_COMPILE ?=
+MODDESTDIR ?= /lib/modules/$(KVER)/kernel/drivers/net/wireless/
+CROSS_COMPILE ?= aarch64-linux-gnu-
 ccflags-$(CONFIG_PLATFORM_RADXA) += -DCONFIG_PLATFORM_RADXA
 endif
 ###########################################
 
 
-all: modules
+all: modules 
 modules:
 	make -C $(KDIR) M=$(PWD) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) modules
 
