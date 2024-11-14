@@ -321,7 +321,8 @@ CONFIG_PLATFORM_ROCKCHIP ?= n
 CONFIG_PLATFORM_ALLWINNER ?= n
 CONFIG_PLATFORM_AMLOGIC ?= n
 CONFIG_PLATFORM_HI ?= n
-CONFIG_PLATFORM_UBUNTU ?= y
+CONFIG_PLATFORM_UBUNTU ?= n
+CONFIG_PLATFORM_RADXA ?= y
 
 ifeq ($(CONFIG_PLATFORM_ROCKCHIP), y)
 ARCH := arm64
@@ -364,6 +365,15 @@ ARCH ?= $(SUBARCH)
 CROSS_COMPILE ?=
 endif
 
+ifeq ($(CONFIG_PLATFORM_RADXA), y)
+KDIR  ?= /lib/modules/$(shell uname -r)/build
+PWD   ?= $(shell pwd)
+KVER ?= $(shell uname -r)
+MODDESTDIR ?= /lib/modules/$(KVER)/kernel/drivers/net/wireless/aic8800
+ARCH := arm64
+CROSS_COMPILE ?=
+ccflags-y += -DCONFIG_PLATFORM_RADXA
+endif
 
 all: modules
 modules:
