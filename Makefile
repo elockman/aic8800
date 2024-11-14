@@ -70,7 +70,8 @@ CONFIG_PLATFORM_ROCKCHIP2 ?= n
 CONFIG_PLATFORM_ALLWINNER ?=n
 CONFIG_PLATFORM_INGENIC_T20 ?= n
 CONFIG_PLATFORM_AMLOGIC ?= n
-CONFIG_PLATFORM_UBUNTU ?= y
+CONFIG_PLATFORM_UBUNTU ?= n
+CONFIG_PLATFORM_RADXA ?= y
 
 ifeq ($(CONFIG_PLATFORM_ROCKCHIP), y)
 ccflags-$(CONFIG_PLATFORM_ROCKCHIP) += -DCONFIG_PLATFORM_ROCKCHIP
@@ -114,6 +115,16 @@ PWD   ?= $(shell pwd)
 KVER ?= $(shell uname -r)
 MODDESTDIR ?= /lib/modules/$(KVER)/kernel/drivers/net/wireless/
 ARCH ?= x86_64
+CROSS_COMPILE ?=
+endif
+
+ifeq ($(CONFIG_PLATFORM_RADXA), y)
+ccflags-$(CONFIG_PLATFORM_RADXA) += -DCONFIG_PLATFORM_RADXA
+KDIR  ?= /lib/modules/$(shell uname -r)/build
+PWD   ?= $(shell pwd)
+KVER ?= $(shell uname -r)
+MODDESTDIR ?= /lib/modules/$(KVER)/kernel/drivers/net/wireless/
+ARCH ?= arm64
 CROSS_COMPILE ?=
 endif
 ###########################################
