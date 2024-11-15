@@ -373,7 +373,7 @@ endif
 
 all: modules 
 modules:
-	make -C $(KDIR) M=$(PWD) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) modules
+	make -C $(KDIR) M=$(PWD) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -I /usr/include -I /lib/modules/6.11.0-yocto-standard/build/arch/arm64/include modules
 
 install:
 	mkdir -p $(MODDESTDIR)
