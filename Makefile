@@ -360,7 +360,8 @@ endif
 
 ifeq ($(CONFIG_PLATFORM_RADXA), y)
 ARCH := arm64
-KDIR ?= /lib/modules/$(shell uname -r)/build
+KDIR ?= /home/builder/projects/zero3w/yocto/build/tmp-glibc/work-shared/radxa-zero-3w/kernel-source
+#KDIR ?= /lib/modules/$(shell uname -r)/build
 PWD  ?= $(shell pwd)
 KVER ?= $(shell uname -r)
 MODDESTDIR ?= /lib/modules/$(KVER)/kernel/drivers/net/wireless/
