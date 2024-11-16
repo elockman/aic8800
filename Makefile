@@ -364,7 +364,7 @@ ARCH := arm64
 KDIR ?= /lib/modules/$(shell uname -r)/build
 # PWD  ?= $(shell pwd)
 # KVER ?= $(shell uname -r)
-MODDESTDIR ?= /lib/modules/$(KVER)/kernel/drivers/net/wireless/
+# MODDESTDIR ?= /lib/modules/$(KVER)/kernel/drivers/net/wireless/
 CROSS_COMPILE ?= aarch64-oe-linux-
 ccflags-$(CONFIG_PLATFORM_RADXA) += -DCONFIG_PLATFORM_ROCKCHIP
 endif
@@ -373,7 +373,7 @@ endif
 
 all: modules 
 modules:
-	make -C $(KDIR) M=$(PWD) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE) -I /usr/include -I /lib/modules/6.11.0-yocto-standard/build/arch/arm64/include modules
+	make -C $(KDIR) M=$(PWD) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
 
 install:
 	mkdir -p $(MODDESTDIR)
