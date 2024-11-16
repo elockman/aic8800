@@ -366,7 +366,7 @@ KDIR ?= /lib/modules/$(shell uname -r)/build
 # KVER ?= $(shell uname -r)
 MODDESTDIR ?= /lib/modules/$(KVER)/kernel/drivers/net/wireless/
 CROSS_COMPILE ?= aarch64-oe-linux-
-ccflags-$(CONFIG_PLATFORM_RADXA) += -DCONFIG_PLATFORM_RADXA
+ccflags-$(CONFIG_PLATFORM_RADXA) += -DCONFIG_PLATFORM_ROCKCHIP
 endif
 ###########################################
 
