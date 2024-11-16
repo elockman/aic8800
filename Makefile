@@ -294,6 +294,9 @@ endif
 #ccflags-y += -DCONFIG_VENDOR_RWNX_VHT_NO80
 #endif
 
+KERNEL_VERSION := $(shell uname -r)
+#pragma message ("KERNEL_VERSION is set to: " KERNEL_VERSION)
+
 ccflags-$(CONFIG_RX_REORDER) += -DAICWF_RX_REORDER
 ccflags-$(CONFIG_ARP_OFFLOAD) += -DAICWF_ARP_OFFLOAD
 ccflags-$(CONFIG_RADAR_DETECT) += -DRADAR_OR_IR_DETECT
@@ -373,6 +376,7 @@ endif
 
 all: modules 
 modules:
+	@echo "Kernel Version: $(KERNEL_VERSION)"
 	make -C $(KDIR) M=$(PWD) ARCH=$(ARCH) CROSS_COMPILE=$(CROSS_COMPILE)
 
 install:
